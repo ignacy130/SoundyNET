@@ -9,7 +9,7 @@ namespace SoundyAPI.Models
     public class Sound : Entity
     {
         public string FilePath { get; set; }
-        public Guid CreatorId { get; set; }
+        public virtual User Creator { get; set; }
         public Sound()
         {
 
