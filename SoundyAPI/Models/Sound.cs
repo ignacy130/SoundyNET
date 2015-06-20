@@ -6,14 +6,13 @@ using System.Web;
 
 namespace SoundyAPI.Models
 {
-	public class Sound
-	{
-		public Guid Id { get; set; }
-		public string FilePath { get; set; }
-		public Guid CreatorId { get; set; }
-		public Sound()
-		{
+    public class Sound : Entity
+    {
+        public string FilePath { get; set; }
+        public Guid CreatorId { get; set; }
+        public Sound()
+        {
 
-		}
-	}
+        }
+    }
 }

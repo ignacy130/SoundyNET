@@ -5,19 +5,15 @@ using System.Web;
 
 namespace SoundyAPI.Models
 {
-	public class User	
+    public class User : Entity
 	{
-		public Guid ID { get; set; }
 		public string UserName { get; set; }
 		public int Energy { get; set; }
-		public List<Track> Tracks { get; set; }
-		public User(Guid id, string name, int energy)
+		public virtual List<Track> Tracks { get; set; }
+		public User(string name, int energy)
 		{
-			this.ID = id;
 			this.UserName = name;
 			this.Energy = energy;
 		}
-
-
 	}
 }
