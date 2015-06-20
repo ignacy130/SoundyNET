@@ -6,9 +6,86 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding MainPage, Source={StaticResource Locator}}">
 
-    <Grid>
+    <Grid x:Name="LayoutRoot">
 
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="MY APPLICATION" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="page title" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Pivot SelectedIndex="1" Grid.Row="1" x:Name="ContentRoot">
+            <PivotItem>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60*"/>
+                        <RowDefinition Height="300*"/>
+                        <RowDefinition Height="60*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox HorizontalAlignment="Left">
+                        <TextBlock >
+                        Soundies
+                        </TextBlock>
+                    </Viewbox>
+                    <ListView Grid.Row="1" ItemsSource="{Binding Soundies}">
+
+                    </ListView>
+                </Grid>
+            </PivotItem>
+            <PivotItem>
+                <Grid x:Name="RecordView">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60*"/>
+                        <RowDefinition Height="300*"/>
+                        <RowDefinition Height="60*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox>
+                        <TextBlock>
+                        Start recording
+                        </TextBlock>
+                    </Viewbox>
+                    <Grid Grid.Row="1">
+                        <Viewbox>
+                            <AppBarButton Command="{Binding ToggleRecord}" Margin="10" Icon="{Binding IsRecording, Mode=TwoWay, Converter={StaticResource PlayPauseConverter}}" />
+                        </Viewbox>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <ProgressBar />
+                    </Grid>
+                </Grid>
+            </PivotItem>
+            <PivotItem>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60*"/>
+                        <RowDefinition Height="300*"/>
+                        <RowDefinition Height="60*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox HorizontalAlignment="Left">
+                        <TextBlock >
+                        Friends
+                        </TextBlock>
+                    </Viewbox>
+                    <ListView Grid.Row="1" ItemsSource="{Binding Friends}">
+
+                    </ListView>
+                </Grid>
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>
