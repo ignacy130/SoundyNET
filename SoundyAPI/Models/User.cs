@@ -15,5 +15,24 @@ namespace SoundyAPI.Models
 			this.UserName = name;
 			this.Energy = energy;
 		}
+
+		/// <summary>
+		/// if return true - success added new track
+		/// if not - you dont have enough energy
+		/// </summary>
+		/// <param name="newTrack"></param>
+		/// <returns></returns>
+		public bool CreateNewTrack(Track newTrack)
+		{
+			bool hasEnergy = Energy > 0;
+			if (Energy == 0) {
+				//TODO Inform user, dont have enough power to create new track
+			} else {
+				Tracks.Add(newTrack);
+				Energy--;
+			}
+			Energy -= Energy == 0 ? 0 : 1;
+			return hasEnergy;
+		}
 	}
 }
