@@ -29,22 +29,16 @@
         <MediaElement x:Name="playbackElement1"></MediaElement>
 
         <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <Button HorizontalAlignment="Center" x:Name="CaptureButton" Content="Record!" Click="CaptureButton_Click"></Button>
-        </Grid>
-        <Grid Grid.Row="2" x:Name="ContentRoot1" Margin="19,9.5,19,0">
-            <Button x:Name="playRecorded" Content="Play" Margin="124,320,0,124" Click="playRecorded_Click" ></Button>
-        </Grid>
-        <Grid Grid.Row="3" x:Name="ContentRoot2" Margin="19,9.5,19,0">
+        <StackPanel Grid.Row="1">
+            <Button x:Name="CaptureButton" Content="Record!" Click="CaptureButton_Click"></Button>
 
-            <Button x:Name="removeRecorded" Content="Remove" Margin="124,272,0,172" Click="removeRecorded_Click" ></Button>
-        </Grid>
-        <Grid Grid.Row="5" x:Name="ContentRoot3" Margin="19,9.5,19,0">
+            <Button x:Name="playRecorded" Content="Play"  Click="playRecorded_Click" ></Button>
 
-            <Button x:Name="sendRecorded" Content="Send" Margin="123,404,0,40" ></Button>
-        </Grid>
-        <Grid Grid.Row="6" x:Name="ContentRoot4" Margin="19,9.5,19,0">
-            <ProgressBar HorizontalAlignment="Center" x:Name="TimeProgress" Margin="118,376,121,104" Width="123" Height="21"></ProgressBar>
-        </Grid>
+            <Button x:Name="removeRecorded" Content="Remove" Click="removeRecorded_Click" ></Button>
+
+            <Button x:Name="sendRecorded" Content="Send"  ></Button>
+        <ProgressBar HorizontalAlignment="Stretch" x:Name="TimeProgress" ></ProgressBar>
+        </StackPanel>
+
     </Grid>
 </Page>

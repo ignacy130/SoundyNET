@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Soundy.ViewModels
 {
-    public class MainPageViewModel : ObservableObject
+    public class MainPageViewModel : ViewModelBase
     {
         public ObservableCollection<string> Friends { get; set; }
         public ObservableCollection<string> Soundies { get; set; }
@@ -30,6 +30,7 @@ namespace Soundy.ViewModels
                     (obj) =>
                     {
                         this.IsRecording = !this.IsRecording;
+                        RaisePropertyChanged("IsRecording");
                     });
             }
     }
