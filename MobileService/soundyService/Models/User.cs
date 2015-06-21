@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web; 
+using System.Web;
 
-namespace SoundyAPI.Models
+namespace soundyService.Models
 {
     public class User : Entity
 	{

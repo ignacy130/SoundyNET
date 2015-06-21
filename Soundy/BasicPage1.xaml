@@ -1,43 +1,53 @@
-﻿<Page
-    x:Class="Soundy.BasicPage1"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Soundy"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+﻿<Page x:Class="Soundy.BasicPage1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Soundy"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot">
 
         <Grid.ChildrenTransitions>
             <TransitionCollection>
-                <EntranceThemeTransition/>
+                <EntranceThemeTransition />
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- Title Panel -->
+        <MediaElement x:Name="playbackElement1" />
+
+        <!--  Title Panel  -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="MY APPLICATION" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="Record something!" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock Margin="0,12,0,0"
+                       Style="{ThemeResource TitleTextBlockStyle}"
+                       Text="MY APPLICATION" />
+            <TextBlock Margin="0,-6.5,0,26.5"
+                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"
+                       Style="{ThemeResource HeaderTextBlockStyle}"
+                       Text="Record something!" />
         </StackPanel>
-        <MediaElement x:Name="playbackElement1"></MediaElement>
-
-        <!--TODO: Content should be placed within the following grid-->
+        <!--  TODO: Content should be placed within the following grid  -->
         <StackPanel Grid.Row="1">
-            <Button x:Name="CaptureButton" Content="Record!" Click="CaptureButton_Click"></Button>
+            <Button x:Name="CaptureButton"
+                    Click="CaptureButton_Click"
+                    Content="Record!" />
 
-            <Button x:Name="playRecorded" Content="Play"  Click="playRecorded_Click" ></Button>
+            <Button x:Name="playRecorded"
+                    Click="playRecorded_Click"
+                    Content="Play" />
 
-            <Button x:Name="removeRecorded" Content="Remove" Click="removeRecorded_Click" ></Button>
+            <Button x:Name="removeRecorded"
+                    Click="removeRecorded_Click"
+                    Content="Remove" />
 
-            <Button x:Name="sendRecorded" Content="Send"  ></Button>
-        <ProgressBar HorizontalAlignment="Stretch" x:Name="TimeProgress" ></ProgressBar>
+            <Button x:Name="sendRecorded" Content="Send" />
+            <ProgressBar x:Name="TimeProgress" HorizontalAlignment="Stretch" />
         </StackPanel>
 
     </Grid>

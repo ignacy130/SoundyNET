@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -36,6 +37,11 @@ namespace Soundy
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
         }
+
+         public static MobileServiceClient MobileService = new MobileServiceClient(
+              "https://soundy.azure-mobile.net/",
+              "weTNYIzYOTTPqAMaBzSzYabUhipjif73"
+        );
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -91,7 +97,7 @@ namespace Soundy
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(BasicPage1), e.Arguments))
+                if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }
@@ -100,6 +106,7 @@ namespace Soundy
             // Ensure the current window is active
             Window.Current.Activate();
         }
+
 
         /// <summary>
         /// Restores the content transitions after the app has launched.
