@@ -22,13 +22,18 @@ namespace Soundy.ViewModels
         public MainPageViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
+
             this.Friends = new ObservableCollection<string>() {"Jan", "Grzegorz", "Tomek" };
             this.Soundies = new ObservableCollection<string>() { "Birthday's", "Greetings", "Stronger" };
+
+            this.Soundies = new ObservableCollection<string>() { "Soudn1", "Sound2" };
             SoundRecordingHelper.Instance._dispatcherTimer.Tick += _dispatcherTimer_Tick;
             
         }
 
-        
+        private async void getDBData() {
+            //this.Friends = new ObservableCollection<User>( await Dao<User>.GetAll());
+        }
 
         void _dispatcherTimer_Tick(object sender, object e)
         {
