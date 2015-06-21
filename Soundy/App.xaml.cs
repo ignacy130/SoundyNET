@@ -39,8 +39,8 @@ namespace Soundy
         }
 
          public static MobileServiceClient MobileService = new MobileServiceClient(
-              "https://soundy.azure-mobile.net/",
-              "weTNYIzYOTTPqAMaBzSzYabUhipjif73"
+              "https://soundyapp.azure-mobile.net/",
+              "YdMEWuJvlIbjLTijdSgIlekjtAteYs84"
         );
 
         /// <summary>

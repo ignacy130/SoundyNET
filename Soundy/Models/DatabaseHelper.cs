@@ -27,6 +27,7 @@ namespace Soundy.Models
         {
             await App.MobileService.GetTable<T>().InsertAsync(item);
         }
+
         public async static void Update(T user)
         {
             await App.MobileService.GetTable<T>().UpdateAsync(user);
