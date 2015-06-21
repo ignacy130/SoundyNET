@@ -4,7 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:Soundy"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      Background="#FF05D82C"
       mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot">
@@ -18,18 +18,16 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
+        <Grid Margin="10">
+            <TextBlock FontSize="20">Ignacy</TextBlock>
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <TextBlock FontSize="20">Batteries:</TextBlock>
+                <TextBlock HorizontalAlignment="Right" FontSize="20">5</TextBlock>
+            </StackPanel>
+        </Grid>
         <MediaElement x:Name="playbackElement1" />
         <!--  Title Panel  -->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Margin="0,12,0,0"
-                       Style="{ThemeResource TitleTextBlockStyle}"
-                       Text="MY APPLICATION" />
-            <TextBlock Margin="0,-6.5,0,26.5"
-                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"
-                       Style="{ThemeResource HeaderTextBlockStyle}"
-                       Text="page title" />
-        </StackPanel>
+
 
         <!--  TODO: Content should be placed within the following grid  -->
         <Grid x:Name="ContentRoot"
@@ -37,16 +35,18 @@
               Margin="19,9.5,19,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30*" />
-                <RowDefinition Height="5*" />
+                <RowDefinition Height="300*" />
+                <RowDefinition Height="60*" />
             </Grid.RowDefinitions>
-            <Viewbox>
+            <TextBlock FontSize="40" TextAlignment="Center">Rehearse</TextBlock>
+            <Viewbox Grid.Row="1">
                 <AppBarButton Click="Button_Click"
                               Icon="Play"
                               Label="Play">
                     play!
                 </AppBarButton>
             </Viewbox>
-            <Viewbox Grid.Row="1">
+            <Viewbox Grid.Row="2">
                 <Grid>
                     <Button HorizontalAlignment="Stretch" Click="Button_Click_1">Save!</Button>
                 </Grid>

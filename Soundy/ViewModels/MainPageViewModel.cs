@@ -22,10 +22,13 @@ namespace Soundy.ViewModels
         public MainPageViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
-            this.Friends = new ObservableCollection<string>(){"Jan", "Tomek"};
-            this.Soundies = new ObservableCollection<string>() { "Soudn1", "Sound2" };
+            this.Friends = new ObservableCollection<string>() {"Jan", "Grzegorz", "Tomek" };
+            this.Soundies = new ObservableCollection<string>() { "Birthday's", "Greetings", "Stronger" };
             SoundRecordingHelper.Instance._dispatcherTimer.Tick += _dispatcherTimer_Tick;
+            
         }
+
+        
 
         void _dispatcherTimer_Tick(object sender, object e)
         {
@@ -33,7 +36,6 @@ namespace Soundy.ViewModels
         }
 
         public bool IsRecording { get; set; }
-
 
         public RelayCommand<bool> ToggleRecord{
             get

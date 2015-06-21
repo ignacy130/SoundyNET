@@ -194,6 +194,8 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\SoundsController.cs" />
+    <Compile Include="Controllers\TrackController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataObjects\TodoItem.cs" />
     <Compile Include="Models\Sound.cs">
       <SubType>Code</SubType>

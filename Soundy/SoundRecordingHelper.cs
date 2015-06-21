@@ -60,7 +60,7 @@ namespace Soundy
             try
             {
                 Debug.WriteLine("Starting record");
-                String fileName = "record.m4a";
+                String fileName = "battlehack.m4a";
 
                 _recordStorageFile = await KnownFolders.VideosLibrary.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
 

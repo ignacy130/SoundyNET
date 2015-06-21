@@ -4,9 +4,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:Soundy"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      Background="#FF05D82C"
       DataContext="{Binding MainPage,
                             Source={StaticResource Locator}}"
+      NavigationCacheMode="Disabled"
       mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot">
@@ -21,7 +22,13 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
+        <Grid Margin="10">
+            <TextBlock FontSize="20">Ignacy</TextBlock>
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <TextBlock FontSize="20">Batteries:</TextBlock>
+                <TextBlock HorizontalAlignment="Right" FontSize="20">5</TextBlock>
+            </StackPanel>
+        </Grid>
         <!--  Title Panel  -->
         <!--<StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Margin="0,12,0,0"
@@ -39,7 +46,7 @@
                SelectedIndex="1">
             <Pivot.HeaderTemplate>
                 <DataTemplate>
-                    <Grid Background="Blue">
+                    <Grid Background="Transparent">
                         <TextBlock Text="{Binding}" />
                     </Grid>
                 </DataTemplate>
@@ -51,9 +58,25 @@
                         <RowDefinition Height="300*" />
                         <RowDefinition Height="60*" />
                     </Grid.RowDefinitions>
-                    <Viewbox HorizontalAlignment="Left">
-                    </Viewbox>
-                    <ListView Grid.Row="1" ItemsSource="{Binding Soundies}" />
+                    <Viewbox HorizontalAlignment="Left" />
+                    <ListView Grid.Row="1" ItemsSource="{Binding Soundies}">
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,0,0,10">
+                                    <TextBlock FontSize="30" Text="{Binding}" />
+                                    <SymbolIcon Width="50"
+                                                HorizontalAlignment="Right"
+                                                Symbol="Send" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </Grid>
             </PivotItem>
             <PivotItem Header="Recording">
@@ -63,8 +86,7 @@
                         <RowDefinition Height="300*" />
                         <RowDefinition Height="60*" />
                     </Grid.RowDefinitions>
-                    <Viewbox>
-                    </Viewbox>
+                    <Viewbox />
                     <Grid Grid.Row="1">
                         <MediaElement x:Name="playbackElement1" />
                         <Viewbox>
@@ -76,7 +98,10 @@
                         </Viewbox>
                     </Grid>
                     <Grid Grid.Row="2">
-                        <ProgressBar x:Name="TimeProgressBar" />
+                        <ProgressBar x:Name="TimeProgressBar"
+                                     Height="10"
+                                     Foreground="White"
+                                     IsIndeterminate="{Binding IsRecording}" />
                     </Grid>
                 </Grid>
             </PivotItem>
@@ -87,8 +112,7 @@
                         <RowDefinition Height="300*" />
                         <RowDefinition Height="60*" />
                     </Grid.RowDefinitions>
-                    <Viewbox HorizontalAlignment="Left">
-                    </Viewbox>
+                    <Viewbox HorizontalAlignment="Left" />
                     <ListView Grid.Row="1" ItemsSource="{Binding Friends}">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
@@ -107,6 +131,29 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </Grid>
+            </PivotItem>
+            <PivotItem Header="Buy batteries">
+                <StackPanel>
+
+                    <Image Width="200" Source="ViewModel/paypal.png" />
+                    <ComboBox Header="Amount of batteries" SelectedIndex="0">
+                        <ComboBox.Items>
+                            <ListBoxItem>1 [$0.09]</ListBoxItem>
+                            <ListBoxItem>2 [$0.15]</ListBoxItem>
+                            <ListBoxItem>3 [$0.30]</ListBoxItem>
+                            <ListBoxItem>5 [$0.50]</ListBoxItem>
+                            <ListBoxItem>10 [$0.80]</ListBoxItem>
+                        </ComboBox.Items>
+                    </ComboBox>
+                    <TextBlock FontSize="16">Your account</TextBlock>
+                    <ComboBox SelectedIndex="0">
+                        <ComboBox.Items>
+                            <ListBoxItem>ul. Karl-Marx-Allee 12</ListBoxItem>
+                            <ListBoxItem>ul. Weiserstrasse 34</ListBoxItem>
+                        </ComboBox.Items>
+                    </ComboBox>
+                    <Button HorizontalAlignment="Stretch">Buy!</Button>
+                </StackPanel>
             </PivotItem>
         </Pivot>
     </Grid>
