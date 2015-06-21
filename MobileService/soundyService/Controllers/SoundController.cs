@@ -40,11 +40,11 @@ namespace soundyService.Controllers
 
         // POST tables/Sound
 
-        public async Task<IHttpActionResult> PostTodoItem(Sound item)
+        public async Task<IHttpActionResult> PostSound(Sound sound)
         {
             string storageAccountName;
             string storageAccountKey;
-
+            sound.StepNumber = -20;
             // Try to get the Azure storage account token from app settings.  
             if (!(Services.Settings.TryGetValue("STORAGE_ACCOUNT_NAME", out storageAccountName) |
             Services.Settings.TryGetValue("STORAGE_ACCOUNT_ACCESS_KEY", out storageAccountKey)))
@@ -59,19 +59,18 @@ namespace soundyService.Controllers
             CloudBlobClient blobClient = new CloudBlobClient(blobEndpoint,
                 new StorageCredentials(storageAccountName, storageAccountKey));
 
-            if (item.ContainerName != null)
+            if (sound.ContainerName != null)
             {
                 // Set the BLOB store container name on the item, which must be lowercase.
-                item.ContainerName = item.ContainerName.ToLower();
+                sound.ContainerName = sound.ContainerName.ToLower();
 
                 // Create a container, if it doesn't already exist.
-                CloudBlobContainer container = blobClient.GetContainerReference(item.ContainerName);
+                CloudBlobContainer container = blobClient.GetContainerReference(sound.ContainerName);
                 container.SetPermissions(new BlobContainerPermissions
                 {
                     PublicAccess = BlobContainerPublicAccessType.Blob
                 });
-                await container.CreateIfNotExistsAsync();
-
+                sound.StepNumber = -10;
                 // Create a shared access permission policy. 
                 BlobContainerPermissions containerPermissions = new BlobContainerPermissions();
 
@@ -79,6 +78,7 @@ namespace soundyService.Controllers
                 containerPermissions.PublicAccess = BlobContainerPublicAccessType.Blob;
                 container.SetPermissions(containerPermissions);
 
+                await container.CreateIfNotExistsAsync();
                 // Define a policy that gives write access to the container for 5 minutes.                                   
                 SharedAccessBlobPolicy sasPolicy = new SharedAccessBlobPolicy()
                 {
@@ -88,15 +88,15 @@ namespace soundyService.Controllers
                 };
 
                 // Get the SAS as a string.
-                item.SasQueryString = container.GetSharedAccessSignature(sasPolicy);
-
+                sound.SasQueryString = container.GetSharedAccessSignature(sasPolicy);
+                sound.StepNumber = -5;
                 // Set the URL used to store the image.
-                item.ImageUri = string.Format("{0}{1}/{2}", blobEndpoint.ToString(),
-                    item.ContainerName, item.ResourceName);
+                sound.ImageUri = string.Format("{0}{1}/{2}", blobEndpoint.ToString(),
+                sound.ContainerName, sound.ResourceName);
             }
 
             // Complete the insert operation.
-            var current = await InsertAsync(item);
+            var current = await InsertAsync(sound);
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }
 

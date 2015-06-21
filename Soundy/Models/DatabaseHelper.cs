@@ -4,6 +4,7 @@ using Soundy.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -22,7 +23,7 @@ namespace Soundy.Models
             return await App.MobileService.GetTable<T>().ToListAsync();
         }
 
-        public async static void Insert(T item)
+        public async static Task Insert(T item)
         {
             await App.MobileService.GetTable<T>().InsertAsync(item);
         }
@@ -47,7 +48,7 @@ namespace Soundy.Models
 
             // Send the item to be inserted. When blob properties are set this
             // generates an SAS in the response.
-            Dao<Sound>.Insert(sound);
+            await Dao<Sound>.Insert(sound);
 
             // If we have a returned SAS, then upload the blob.
             if (!string.IsNullOrEmpty(sound.SasQueryString))
