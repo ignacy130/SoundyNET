@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Soundy.Models
 {
-    public class User
+    public class User : Entity
 	{
 		public string UserName { get; set; }
 		public int Energy { get; set; }

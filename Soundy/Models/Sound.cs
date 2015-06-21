@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Soundy.Models
 {
-    public class Sound
+    public class Sound : Entity
     {
         public string FilePath { get; set; }
         public virtual User Creator { get; set; }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Web.Http;
 using Microsoft.WindowsAzure.Mobile.Service;
-using soundyService.DataObjects;
 using soundyService.Models;
 
 namespace soundyService
@@ -30,15 +29,15 @@ namespace soundyService
     {
         protected override void Seed(soundyContext context)
         {
-            List<TodoItem> todoItems = new List<TodoItem>
+            List<User> Users = new List<User>
             {
-                new TodoItem { Id = Guid.NewGuid().ToString(), Text = "First item", Complete = false },
-                new TodoItem { Id = Guid.NewGuid().ToString(), Text = "Second item", Complete = false },
+                new User { Id = Guid.NewGuid().ToString(), UserName = "First item" },
+                new User { Id = Guid.NewGuid().ToString(), UserName = "Second item" },
             };
 
-            foreach (TodoItem todoItem in todoItems)
+            foreach (User user in Users)
             {
-                context.Set<TodoItem>().Add(todoItem);
+                context.Set<User>().Add(user);
             }
 
             base.Seed(context);

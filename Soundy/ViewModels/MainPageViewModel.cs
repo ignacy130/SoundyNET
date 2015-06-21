@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Soundy.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,6 +23,7 @@ namespace Soundy.ViewModels
         }
 
         public bool IsRecording { get; set; }
+
 
         public RelayCommand<bool> ToggleRecord{
             get
