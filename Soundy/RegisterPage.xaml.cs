@@ -134,7 +134,7 @@ namespace Soundy
             var users = await Dao<User>.GetAll();
             if (!users.Any(x => x.UserName == user.UserName))
             {
-                Dao<User>.Insert(user);
+                await Dao<User>.Insert(user);
                 UserSessionData.Instance.User = user;
             }
             else {

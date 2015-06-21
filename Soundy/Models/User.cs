@@ -11,5 +11,10 @@ namespace Soundy.Models
 		public virtual List<Track> Tracks { get; set; }
         public string Hash { get; set; }
         public int Salt { get; set; }
+
+        public override string ToString()
+        {
+            return UserName;
+        }
 	}
 }
