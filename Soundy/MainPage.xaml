@@ -66,6 +66,7 @@
                     <Viewbox>
                     </Viewbox>
                     <Grid Grid.Row="1">
+                        <MediaElement x:Name="playbackElement1" />
                         <Viewbox>
                             <AppBarButton Margin="10"
                                           Command="{Binding ToggleRecord}"

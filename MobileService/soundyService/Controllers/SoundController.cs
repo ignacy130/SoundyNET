@@ -66,6 +66,10 @@ namespace soundyService.Controllers
 
                 // Create a container, if it doesn't already exist.
                 CloudBlobContainer container = blobClient.GetContainerReference(item.ContainerName);
+                container.SetPermissions(new BlobContainerPermissions
+                {
+                    PublicAccess = BlobContainerPublicAccessType.Blob
+                });
                 await container.CreateIfNotExistsAsync();
 
                 // Create a shared access permission policy. 
@@ -87,7 +91,7 @@ namespace soundyService.Controllers
                 item.SasQueryString = container.GetSharedAccessSignature(sasPolicy);
 
                 // Set the URL used to store the image.
-                item.Uri = string.Format("{0}{1}/{2}", blobEndpoint.ToString(),
+                item.ImageUri = string.Format("{0}{1}/{2}", blobEndpoint.ToString(),
                     item.ContainerName, item.ResourceName);
             }
 

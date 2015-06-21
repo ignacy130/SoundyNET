@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using Soundy.Models;
 using System;
 using System.Collections.Generic;
@@ -13,15 +14,22 @@ namespace Soundy.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        private INavigationService navigationService;
         public ObservableCollection<string> Friends { get; set; }
         public ObservableCollection<string> Soundies { get; set; }
-        private SoundRecordingHelper soundRecordingHelper = new SoundRecordingHelper();
 
 
-        public MainPageViewModel()
+        public MainPageViewModel(INavigationService navigationService)
         {
+            this.navigationService = navigationService;
             this.Friends = new ObservableCollection<string>(){"Jan", "Tomek"};
             this.Soundies = new ObservableCollection<string>() { "Soudn1", "Sound2" };
+            SoundRecordingHelper.Instance._dispatcherTimer.Tick += _dispatcherTimer_Tick;
+        }
+
+        void _dispatcherTimer_Tick(object sender, object e)
+        {
+            this.navigationService.NavigateTo("RehearsePage");
         }
 
         public bool IsRecording { get; set; }
@@ -33,7 +41,7 @@ namespace Soundy.ViewModels
                 return new RelayCommand<bool>(
                     (obj) =>
                     {
-                        soundRecordingHelper.CaptureSound();
+                        SoundRecordingHelper.Instance.CaptureSound();
                         this.IsRecording = !this.IsRecording;
                         if(this.IsRecording)
                         {

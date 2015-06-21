@@ -1,16 +1,13 @@
 ﻿using Soundy.Common;
+using Soundy.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
-using Windows.Media;
-using Windows.Media.Capture;
-using Windows.Media.MediaProperties;
 using Windows.Storage;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -21,7 +18,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace Soundy
@@ -29,22 +25,19 @@ namespace Soundy
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class BasicPage1 : Page
+    public sealed partial class RehearsePage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public BasicPage1()
+        public RehearsePage()
         {
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-
-            //Kokosowe metody
         }
-
 
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
@@ -117,27 +110,22 @@ namespace Soundy
 
         #endregion
 
-        private async void playRecorded_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            //UWAGA! jak będzie model to trzeba po kolei odtworzyć wszystkie w kolejności!
             if (!SoundRecordingHelper.Instance._recording)
             {
                 var stream = await SoundRecordingHelper.Instance._recordStorageFile.OpenAsync(FileAccessMode.Read);
-                Debug.WriteLine("Recording file opened");
                 playbackElement1.AutoPlay = true;
                 playbackElement1.SetSource(stream, SoundRecordingHelper.Instance._recordStorageFile.FileType);
                 playbackElement1.Play();
             }
         }
 
-        private void CaptureButton_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            SoundRecordingHelper.Instance.CaptureSound();
-        }
-
-        private void removeRecorded_Click(object sender, RoutedEventArgs e)
-        {
-            //Zabrać baterię! Schować Guzik od nagywania! Napis: jeszcze raz czy coś takiego!
+            var s = new Sound();
+            await SoundsHelper.InsertSound(s, SoundRecordingHelper.Instance._recordStorageFile);
+            var sounds = await Dao<Sound>.GetAll();
         }
     }
 }

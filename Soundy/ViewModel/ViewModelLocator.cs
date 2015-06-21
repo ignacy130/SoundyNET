@@ -14,6 +14,7 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using Soundy.ViewModels;
 
@@ -32,6 +33,9 @@ namespace Soundy.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            var navigationService = this.CreateNavigationService();
+            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
+
             ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
             ////    // Create design time view services and models
@@ -44,6 +48,16 @@ namespace Soundy.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainPageViewModel>();
+        }
+
+        private INavigationService CreateNavigationService()
+        {
+            var navigationService = new NavigationService();
+            navigationService.Configure("MainPage", typeof(MainPage));
+             navigationService.Configure("RehearsePage", typeof(RehearsePage));
+            // navigationService.Configure("key2", typeof(OtherPage2));
+
+            return navigationService;
         }
 
         public MainPageViewModel MainPage

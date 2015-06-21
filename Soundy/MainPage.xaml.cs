@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
+using Windows.Storage;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -27,7 +28,6 @@ namespace Soundy
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private SoundRecordingHelper soundRecordingHelper = new SoundRecordingHelper();
 
         public MainPage()
         {
@@ -110,19 +110,19 @@ namespace Soundy
         private async void playRecorded_Click(object sender, RoutedEventArgs e)
         {
             //UWAGA! jak będzie model to trzeba po kolei odtworzyć wszystkie w kolejności!
-            if (!soundRecordingHelper._recording)
+            if (!SoundRecordingHelper.Instance._recording)
             {
-                //var stream = await soundRecordingHelper._recordStorageFile.OpenAsync(FileAccessMode.Read);
+                var stream = await SoundRecordingHelper.Instance._recordStorageFile.OpenAsync(FileAccessMode.Read);
                 //Debug.WriteLine("Recording file opened");
-                //playbackElement1.AutoPlay = true;
-                //playbackElement1.SetSource(stream, soundRecordingHelper._recordStorageFile.FileType);
-                //playbackElement1.Play();
+                playbackElement1.AutoPlay = true;
+                playbackElement1.SetSource(stream, SoundRecordingHelper.Instance._recordStorageFile.FileType);
+                playbackElement1.Play();
             }
         }
 
         private void CaptureButton_Click(object sender, RoutedEventArgs e)
         {
-            soundRecordingHelper.CaptureSound();
+            SoundRecordingHelper.Instance.CaptureSound();
         }
 
         private void removeRecorded_Click(object sender, RoutedEventArgs e)
