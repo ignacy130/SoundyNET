@@ -1,4 +1,5 @@
 ﻿using Microsoft.WindowsAzure.Mobile.Service;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,10 +14,17 @@ namespace soundyService.Models
         public virtual User Creator { get; set; }
         public int StepNumber { get; set; }
 
+        [JsonProperty(PropertyName = "containerName")]
         public string ContainerName { get; set; }
+
+        [JsonProperty(PropertyName = "resourceName")]
         public string ResourceName { get; set; }
+
+        [JsonProperty(PropertyName = "sasQueryString")]
         public string SasQueryString { get; set; }
-        public string Uri { get; set; } 
+
+        [JsonProperty(PropertyName = "imageUri")]
+        public string ImageUri { get; set; } 
 
         public Sound()
         {
