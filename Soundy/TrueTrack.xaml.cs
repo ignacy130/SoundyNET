@@ -1,17 +1,12 @@
 ﻿using Soundy.Common;
-using Soundy.Models;
-using Soundy.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
-using Windows.Storage;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -21,7 +16,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace Soundy
@@ -29,12 +23,14 @@ namespace Soundy
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class TrueTrack : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private DispatcherTimer dispatcherTimer;
+        
 
-        public MainPage()
+        public TrueTrack()
         {
             this.InitializeComponent();
 
@@ -42,7 +38,9 @@ namespace Soundy
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
-            //this.webView.Source = new Uri("https://www.paypal.com/myaccount/transfer/buy");
+            SoundRecordingHelper.Instance._dispatcherTimer.Tick += _dispatcherTimer_Tick;
+
+
         }
 
         /// <summary>
@@ -51,6 +49,11 @@ namespace Soundy
         public NavigationHelper NavigationHelper
         {
             get { return this.navigationHelper; }
+        }
+
+        void _dispatcherTimer_Tick(object sender, object e)
+        {
+            
         }
 
         /// <summary>
@@ -89,6 +92,11 @@ namespace Soundy
         {
         }
 
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            //do whatever you want to do here
+        }
+
         #region NavigationHelper registration
 
         /// <summary>
@@ -104,24 +112,12 @@ namespace Soundy
         /// </summary>
         /// <param name="e">Provides data for navigation methods and event
         /// handlers that cannot cancel the navigation request.</param>
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
-            await GetData();
-        }
-
-        private async Task GetData()
-        {
-            try
-            {
-                //var friends = (await Dao<User>.GetAll());
-                //(this.DataContext as MainPageViewModel).Friends = new ObservableCollection<User>(friends.Where(x => x.UserName != UserSessionData.Instance.User.UserName));
-                //var sounds = (await Dao<Sound>.GetAll());
-                //(this.DataContext as MainPageViewModel).Soundies = new ObservableCollection<Sound>(sounds);
-            }
-            catch (Exception)
-            {
-            }
+            //SoundRecordingHelper.Instance.
+            player.Source = new Uri("ms-appx:///Assets/recorded.mp4", UriKind.RelativeOrAbsolute);
+            player.Play();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -129,49 +125,6 @@ namespace Soundy
             this.navigationHelper.OnNavigatedFrom(e);
         }
 
-        private async void playRecorded_Click(object sender, RoutedEventArgs e)
-        {
-            //UWAGA! jak będzie model to trzeba po kolei odtworzyć wszystkie w kolejności!
-            if (!SoundRecordingHelper.Instance._recording)
-            {
-                var stream = await SoundRecordingHelper.Instance._recordStorageFile.OpenAsync(FileAccessMode.Read);
-                //Debug.WriteLine("Recording file opened");
-                playbackElement1.AutoPlay = true;
-                playbackElement1.SetSource(stream, SoundRecordingHelper.Instance._recordStorageFile.FileType);
-                playbackElement1.Play();
-            }
-        }
-
-        private void CaptureButton_Click(object sender, RoutedEventArgs e)
-        {
-            SoundRecordingHelper.Instance.CaptureSound();
-        }
-
-        private void removeRecorded_Click(object sender, RoutedEventArgs e)
-        {
-            //Zabrać baterię! Schować Guzik od nagywania! Napis: jeszcze raz czy coś takiego!
-        }
-
         #endregion
-
-        private void PurchaseButtonClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(TrueTrack));
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(TrueTrack));
-        }
     }
 }
