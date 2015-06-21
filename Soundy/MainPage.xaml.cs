@@ -1,9 +1,13 @@
 ﻿using Soundy.Common;
+using Soundy.Models;
+using Soundy.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
@@ -37,6 +41,8 @@ namespace Soundy
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
+            //this.webView.Source = new Uri("https://www.paypal.com/myaccount/transfer/buy");
         }
 
         /// <summary>
@@ -98,9 +104,24 @@ namespace Soundy
         /// </summary>
         /// <param name="e">Provides data for navigation methods and event
         /// handlers that cannot cancel the navigation request.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
+            await GetData();
+        }
+
+        private async Task GetData()
+        {
+            try
+            {
+                //var friends = (await Dao<User>.GetAll());
+                //(this.DataContext as MainPageViewModel).Friends = new ObservableCollection<User>(friends.Where(x => x.UserName != UserSessionData.Instance.User.UserName));
+                //var sounds = (await Dao<Sound>.GetAll());
+                //(this.DataContext as MainPageViewModel).Soundies = new ObservableCollection<Sound>(sounds);
+            }
+            catch (Exception)
+            {
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

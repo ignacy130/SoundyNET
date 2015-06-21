@@ -36,6 +36,8 @@ namespace Soundy
         {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+            var files = new SoundsManager();
+            files.DeleteFiles();
         }
 
          public static MobileServiceClient MobileService = new MobileServiceClient(

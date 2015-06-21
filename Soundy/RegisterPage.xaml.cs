@@ -130,7 +130,6 @@ namespace Soundy
 
         private async void RegisterUser(User user)
         {
-
             var users = await Dao<User>.GetAll();
             if (!users.Any(x => x.UserName == user.UserName))
             {
