@@ -50,7 +50,7 @@ namespace Soundy
 
         public void CaptureSound()
         {
-            _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            _dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
             _dispatcherTimer.Start();
             CaptureAudio();
         }
