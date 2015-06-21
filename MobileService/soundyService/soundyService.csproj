@@ -209,7 +209,6 @@
     <Compile Include="Controllers\TodoItemController.cs" />
     <Compile Include="DataObjects\TodoItem.cs" />
     <Compile Include="Models\Entity.cs" />
-    <Compile Include="Models\Key.cs" />
     <Compile Include="Models\Sound.cs" />
     <Compile Include="Models\soundyContext.cs" />
     <Compile Include="Models\Track.cs" />

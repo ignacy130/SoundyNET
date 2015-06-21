@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.Mobile.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace soundyService.Models
 {
-    public class User : Entity
+    public class User : EntityData
 	{
 		public string UserName { get; set; }
 		public int Energy { get; set; }

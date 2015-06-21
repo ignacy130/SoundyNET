@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Soundy.Models
 {
-    public class Track : Entity
+    public class Track
     {
         public virtual List<User> Owners { get; set; }
         public string Name { get; set; }

@@ -103,7 +103,6 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Sound.cs" />
     <Compile Include="Models\Track.cs" />
     <Compile Include="Models\User.cs" />
