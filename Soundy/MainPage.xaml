@@ -56,6 +56,7 @@
                     <ListView Grid.Row="1" ItemsSource="{Binding Soundies}" />
                 </Grid>
             </PivotItem>
+            
             <PivotItem Header="Recording">
                 <Grid x:Name="RecordView">
                     <Grid.RowDefinitions>
@@ -80,6 +81,28 @@
                     </Grid>
                 </Grid>
             </PivotItem>
+            <PivotItem Header="Track">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60*" />
+                        <RowDefinition Height="300*" />
+                        <RowDefinition Height="60*" />
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60*" />
+                                <RowDefinition Height="60*" />
+                            </Grid.RowDefinitions>
+                            <Button Content ="BattleHack best moments!" Grid.Row="0" Background="#FF05D82C" HorizontalAlignment="Stretch" Click="Button_Click_1"></Button>
+                            <Button Content ="Long story for my little brother" Grid.Row="1" Background="#FF05D82C" Click="Button_Click_2"></Button>
+                        </Grid>
+                    </Button>
+                    <Viewbox HorizontalAlignment="Left">
+                    </Viewbox>
+                </Grid>
+            </PivotItem>
             <PivotItem Header="Friends">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -97,15 +120,22 @@
                         </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="0,0,0,10">
-                                    <TextBlock FontSize="30" Text="{Binding}" />
-                                    <SymbolIcon Width="50"
-                                                HorizontalAlignment="Right"
-                                                Symbol="Send" />
-                                </Grid>
+                                
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Batteries">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60*" />
+                        <RowDefinition Height="300*" />
+                        <RowDefinition Height="60*" />
+                    </Grid.RowDefinitions>
+                    <Viewbox HorizontalAlignment="Left">
+                    </Viewbox>
+                    <Button Grid.Row="1" Content="Buy battery" Click="Button_Click"></Button>
                 </Grid>
             </PivotItem>
         </Pivot>
