@@ -4,7 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:Soundy"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      Background="#FF08BD2A"
       mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot">
@@ -18,6 +18,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
 
         <MediaElement x:Name="playbackElement1" />
@@ -26,29 +27,36 @@
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Margin="0,12,0,0"
                        Style="{ThemeResource TitleTextBlockStyle}"
-                       Text="MY APPLICATION" />
+                       Text="Soundy" />
             <TextBlock Margin="0,-6.5,0,26.5"
                        CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"
                        Style="{ThemeResource HeaderTextBlockStyle}"
-                       Text="Record something!" />
+                       Text="My soundies" />
         </StackPanel>
         <!--  TODO: Content should be placed within the following grid  -->
-        <StackPanel Grid.Row="1">
-            <Button x:Name="CaptureButton"
-                    Click="CaptureButton_Click"
-                    Content="Record!" />
+        <Viewbox Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <AppBarButton x:Name="CaptureButton"
+                              Click="CaptureButton_Click"
+                              Icon="Microphone"
+                              Label="Record!" />
 
-            <Button x:Name="playRecorded"
-                    Click="playRecorded_Click"
-                    Content="Play" />
+                <AppBarButton x:Name="playRecorded"
+                              Click="playRecorded_Click"
+                              Icon="Play"
+                              Label="Play!" />
 
-            <Button x:Name="removeRecorded"
-                    Click="removeRecorded_Click"
-                    Content="Remove" />
+                <AppBarButton x:Name="sendRecorded"
+                              Icon="Send"
+                              Label="Send" />
 
-            <Button x:Name="sendRecorded" Content="Send" />
-            <ProgressBar x:Name="TimeProgress" HorizontalAlignment="Stretch" />
-        </StackPanel>
+            </StackPanel>
+        </Viewbox>
+        <ProgressBar x:Name="TimeProgress"
+                     Grid.Row="4"
+                     HorizontalAlignment="Stretch"
+                     Background="White"
+                     Foreground="Black" />
 
     </Grid>
 </Page>

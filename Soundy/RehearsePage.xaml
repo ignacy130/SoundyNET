@@ -4,7 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:Soundy"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      Background="#FF05D82C"
+      Background="#FF08BD2A"
       mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot">
@@ -26,9 +26,6 @@
             </StackPanel>
         </Grid>
         <MediaElement x:Name="playbackElement1" />
-        <!--  Title Panel  -->
-
-
         <!--  TODO: Content should be placed within the following grid  -->
         <Grid x:Name="ContentRoot"
               Grid.Row="1"
