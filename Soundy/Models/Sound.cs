@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Soundy
+namespace Soundy.Models
 {
-    public class Sound
+    public class Sound : Entity
     {
-        public int StepNumber { get; set; }
-
         public string FilePath { get; set; }
-        public Guid CreatorId { get; set; }
+        public virtual User Creator { get; set; }
+        public int StepNumber { get; set; }
         public Sound()
         {
 
