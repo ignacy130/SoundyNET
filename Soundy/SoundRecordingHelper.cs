@@ -68,6 +68,7 @@ namespace Soundy
                 await _mediaCaptureManager.StartRecordToStorageFileAsync(recordProfile, this._recordStorageFile);
 
                 Debug.WriteLine("Start Record successful");
+                StorageFile file = this._recordStorageFile;
 
                 _recording = true;
             }

@@ -15,6 +15,8 @@ namespace Soundy.ViewModels
     {
         public ObservableCollection<string> Friends { get; set; }
         public ObservableCollection<string> Soundies { get; set; }
+        private SoundRecordingHelper soundRecordingHelper = new SoundRecordingHelper();
+
 
         public MainPageViewModel()
         {
@@ -31,7 +33,12 @@ namespace Soundy.ViewModels
                 return new RelayCommand<bool>(
                     (obj) =>
                     {
+                        soundRecordingHelper.CaptureSound();
                         this.IsRecording = !this.IsRecording;
+                        if(this.IsRecording)
+                        {
+
+                        }
                         RaisePropertyChanged("IsRecording");
                     });
             }

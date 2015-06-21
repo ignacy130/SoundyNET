@@ -27,6 +27,7 @@ namespace Soundy
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private SoundRecordingHelper soundRecordingHelper = new SoundRecordingHelper();
 
         public MainPage()
         {
@@ -104,6 +105,29 @@ namespace Soundy
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedFrom(e);
+        }
+
+        private async void playRecorded_Click(object sender, RoutedEventArgs e)
+        {
+            //UWAGA! jak będzie model to trzeba po kolei odtworzyć wszystkie w kolejności!
+            if (!soundRecordingHelper._recording)
+            {
+                //var stream = await soundRecordingHelper._recordStorageFile.OpenAsync(FileAccessMode.Read);
+                //Debug.WriteLine("Recording file opened");
+                //playbackElement1.AutoPlay = true;
+                //playbackElement1.SetSource(stream, soundRecordingHelper._recordStorageFile.FileType);
+                //playbackElement1.Play();
+            }
+        }
+
+        private void CaptureButton_Click(object sender, RoutedEventArgs e)
+        {
+            soundRecordingHelper.CaptureSound();
+        }
+
+        private void removeRecorded_Click(object sender, RoutedEventArgs e)
+        {
+            //Zabrać baterię! Schować Guzik od nagywania! Napis: jeszcze raz czy coś takiego!
         }
 
         #endregion

@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <!--  Title Panel  -->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+        <!--<StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Margin="0,12,0,0"
                        Style="{ThemeResource TitleTextBlockStyle}"
                        Text="MY APPLICATION" />
@@ -31,13 +31,20 @@
                        CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"
                        Style="{ThemeResource HeaderTextBlockStyle}"
                        Text="page title" />
-        </StackPanel>
+        </StackPanel>-->
 
         <!--  TODO: Content should be placed within the following grid  -->
         <Pivot x:Name="ContentRoot"
                Grid.Row="1"
                SelectedIndex="1">
-            <PivotItem>
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <Grid Background="Blue">
+                        <TextBlock Text="{Binding}" />
+                    </Grid>
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
+            <PivotItem Header="Soundies">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60*" />
@@ -45,12 +52,11 @@
                         <RowDefinition Height="60*" />
                     </Grid.RowDefinitions>
                     <Viewbox HorizontalAlignment="Left">
-                        <TextBlock>Soundies</TextBlock>
                     </Viewbox>
                     <ListView Grid.Row="1" ItemsSource="{Binding Soundies}" />
                 </Grid>
             </PivotItem>
-            <PivotItem>
+            <PivotItem Header="Recording">
                 <Grid x:Name="RecordView">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60*" />
@@ -58,7 +64,6 @@
                         <RowDefinition Height="60*" />
                     </Grid.RowDefinitions>
                     <Viewbox>
-                        <TextBlock>Start recording</TextBlock>
                     </Viewbox>
                     <Grid Grid.Row="1">
                         <Viewbox>
@@ -70,11 +75,11 @@
                         </Viewbox>
                     </Grid>
                     <Grid Grid.Row="2">
-                        <ProgressBar />
+                        <ProgressBar x:Name="TimeProgressBar" />
                     </Grid>
                 </Grid>
             </PivotItem>
-            <PivotItem>
+            <PivotItem Header="Friends">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60*" />
@@ -82,7 +87,6 @@
                         <RowDefinition Height="60*" />
                     </Grid.RowDefinitions>
                     <Viewbox HorizontalAlignment="Left">
-                        <TextBlock>Friends</TextBlock>
                     </Viewbox>
                     <ListView Grid.Row="1" ItemsSource="{Binding Friends}">
                         <ListView.ItemContainerStyle>

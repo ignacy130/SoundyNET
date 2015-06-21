@@ -16,7 +16,7 @@ namespace Soundy.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             bool isPlaying = (bool)value;
-            return isPlaying ? new SymbolIcon(Symbol.Pause) : new SymbolIcon(Symbol.Play);
+            return isPlaying ? new SymbolIcon(Symbol.Pause) : new SymbolIcon(Symbol.Microphone);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
